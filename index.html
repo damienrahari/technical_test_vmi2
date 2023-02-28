@@ -20,7 +20,26 @@
             onChange(callback)
         }
         */
-        
+        class State {
+
+            constructor(initialState) {
+                this.state = initialState;
+                this.callbacks = [];
+            }
+
+            getState() {
+                return this.state;
+            }
+
+            setState(newState) {
+                this.state = { ...this.state, ...newState };
+                this.callbacks.forEach(callback => callback(this.state));
+            }
+
+            onChange(callback) {
+                this.callbacks.push(callback);
+            }
+        }
         /* DO NOT CHANGE ANYTHING UNDER THIS LINE */
         const initialState = {
             email: "david@knx-lab.com",
